@@ -1,0 +1,119 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>{{isLogin ? 'Login' : 'Sign Up' }}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content
+  class="ion-padding"
+  scrollY="ture"
+  style="
+    background-image: url(../../assets/icon/rsz_ine.jpg);
+    text-align: center;
+    margin-top: auto;
+    align-items: center;
+  "
+>
+  <div style="height: 40%; width: 100%; margin-top: 36px;">
+    <ion-img
+      style="
+        opacity: 0.7;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        height: 50%;
+        width: 100%;
+        margin-bottom: -12px;
+      "
+      src="../../assets/icon/logo_size_invert.jpg"
+    >
+    </ion-img>
+  </div>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm="8" offset-md="3">
+          <!-- <ion-row style="margin-top: -50px">
+            <div></div>
+          </ion-row> -->
+          <div style="margin-top: -70px">
+            <ion-card
+              style="
+                opacity: 0.8;
+                border-radius: 20px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                  0 6px 20px 0 rgba(0, 0, 0, 0.19);
+              "
+            >
+              <ion-card-content>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size-md="6" offset-md="3">
+                      <div style="position: static; height: 10%">
+                        <ion-item>
+                          <ion-label position="floating">E-Mail</ion-label>
+                          <ion-input
+                            autocomplete="on"
+                            type="email"
+                            ngModel
+                            name="email"
+                            required
+                            email
+                            #emailCtrl="ngModel"
+                          ></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                          <ion-label position="floating">Password</ion-label>
+                          <ion-input
+                            type="password"
+                            ngModel
+                            name="password"
+                            required
+                            minlength="6"
+                            #passCtrl="ngModel"
+                          ></ion-input>
+                        </ion-item>
+                        <ion-item
+                          color="danger"
+                          *ngIf="!passCtrl.valid && passCtrl.touched"
+                        >
+                          <ion-label>
+                            Password should be at least 6 characters.
+                          </ion-label>
+                        </ion-item>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col size-md="6" offset-md="3">
+                      <div style="height: 20%; padding-top: 1%">
+                        <!-- <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner> -->
+                        <ion-button
+                          type="submit"
+                          color="primary"
+                          expand="block"
+                          [disabled]="!f.valid"
+                        >
+                          {{ isLogin ? 'Login' : 'Sign Up' }}
+                        </ion-button>
+                        <ion-button
+                          type="button"
+                          color="primary"
+                          fill="outline"
+                          expand="block"
+                          (click)="onSwitchAuthMode()"
+                          >{{isLogin ? 'Sign Up' : 'Login' }}</ion-button
+                        >
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
