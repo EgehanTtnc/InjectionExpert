@@ -136,9 +136,9 @@ export class AuthService implements OnDestroy {
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: "my-custom-class",
-      header: "Oturum Süresi Doldu",
-      message: "Tekrardan Giriş Yapınız.",
-      buttons: ["TAMAM"],
+      header: "Session expired",
+      message: "Please login again.",
+      buttons: ["Okey"],
     });
 
     await alert.present();

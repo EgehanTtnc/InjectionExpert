@@ -38,10 +38,22 @@ export class AllPatientsPage implements OnInit {
     })
   }
 
-  onEdit(offerId: string, slidingItem: IonItemSliding) {
+  onEdit(patientId: string, slidingItem: IonItemSliding) {
     slidingItem.close();
-    // this.router.navigate(['/', 'places', 'offers', 'edit', offerId]);
-    console.log('Editting Item', offerId);
+    // this.router.navigate(['/', 'places', 'patients', 'edit', patientId]);
+    console.log('Editting Item', patientId);
+  }
+
+  onDeletePatient(patientId: string, slidingEl: IonItemSliding) {
+    slidingEl.close();
+    this.loadingCtrl.create({
+      message: 'Deleting patient...'
+    }).then(loadingEl => {
+      loadingEl.present();
+      this.patientService.deletePatient(patientId).subscribe(() => {
+        loadingEl.dismiss();
+      });
+    })
   }
 
   ngOnDestroy() {

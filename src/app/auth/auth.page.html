@@ -79,7 +79,7 @@
                           *ngIf="!passCtrl.valid && passCtrl.touched"
                         >
                           <ion-label>
-                            Password should be at least 6 characters.
+                            Should be at least 6 chars.
                           </ion-label>
                         </ion-item>
                       </div>
@@ -92,6 +92,7 @@
                         <ion-button
                           type="submit"
                           color="primary"
+                          shape="round"
                           expand="block"
                           [disabled]="!f.valid"
                         >
@@ -100,6 +101,7 @@
                         <ion-button
                           type="button"
                           color="primary"
+                          shape="round"
                           fill="outline"
                           expand="block"
                           (click)="onSwitchAuthMode()"

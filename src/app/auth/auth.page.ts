@@ -37,7 +37,7 @@ export class AuthPage implements OnInit {
   authenticate(email: string, password: string) {
     this.isLoading = true;
     this.loadingCtrl
-      .create({ keyboardClose: true, message: 'Giriş Yapılıyor...' })
+      .create({ keyboardClose: true, message: 'Logging in...' })
       .then((loadingEl) => {
         loadingEl.present();
         let authObs: Observable<AuthResponseData>;
@@ -56,15 +56,15 @@ export class AuthPage implements OnInit {
           (errRes) => {
             loadingEl.dismiss();
             const code = errRes.error.error.message;
-            let message = 'Kayıt yapılamadı, lütfen tekrar deneyin.';
+            let message = 'Could not registered, please try again.';
             if (code === 'EMAIL_EXISTS') {
-              message = 'Email adresi zaten kayıtlı.';
+              message = 'Email is already exist.';
               this.showAlert(message);
             } else if ( code === 'EMAIL_NOT_FOUND') {
-              message = 'E-Mail Bulunamadı, lütfen önce kayıt olun.';
+              message = 'E-Mail not found, please sign up first.';
               this.showAlert(message);
             } else if ( code === 'INVALID_PASSWORD') {
-              message = 'Şifre yanlış. lütfen tekrar deneyin.';
+              message = 'Wrong password. please try again.';
               this.showAlert(message);
             }
           }
@@ -91,9 +91,9 @@ export class AuthPage implements OnInit {
   private showAlert(message: string) {
     this.alertCtrl
       .create({
-        header: 'Sorgulama yapılamadı',
+        header: 'Please try again.',
         message: message,
-        buttons: ['Tamam'],
+        buttons: ['Okey'],
       })
       .then((alertEl) => {
         alertEl.present();

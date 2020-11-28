@@ -72,7 +72,7 @@ export class NewPatientPage implements OnInit {
         updateOn: "blur",
         validators: [Validators.required],
       }),
-      // imageUrlPatient: new FormControl(null),
+      imageUrlPat: new FormControl(null),
       // imageUrlDiagram: new FormControl(null),
     });
   }
@@ -104,7 +104,7 @@ export class NewPatientPage implements OnInit {
     } else {
       imageFile = imageData;
     }
-    this.form.patchValue({ imageUrlPatient: imageFile });
+    this.form.patchValue({ imageUrlPat: imageFile });
   }
 
   onImagePickedDiag(imageData: string | File) {
@@ -137,31 +137,21 @@ export class NewPatientPage implements OnInit {
       .then((loadingEl) => {
         loadingEl.present();
         this.patientService
-          .addPatient(
-            this.form.value.tcId,
-            this.form.value.name,
-            this.form.value.surname,
-            this.form.value.gender,
-            new Date(this.form.value.dateOfBirth),
-            this.form.value.opDescription,
-            new Date(this.form.value.opDate)
+          .uploadImage(this.form.get('imageUrlPat').value)
+          .pipe(
+            switchMap(uploadRes => {
+              return this.patientService.addPatient(
+                this.form.value.tcId,
+                this.form.value.name,
+                this.form.value.surname,
+                this.form.value.gender,
+                new Date(this.form.value.dateOfBirth),
+                this.form.value.opDescription,
+                new Date(this.form.value.opDate),
+                uploadRes.imageUrl
+              )
+            })
           )
-          // .uploadImage(this.form.get('image').value && this.form.get('imageUrlDiagram').value)
-          // .pipe(
-          //   switchMap(uploadRes => {
-          //     return this.patientService.addPatient(
-          //       this.form.value.tcId,
-          //       this.form.value.name,
-          //       this.form.value.surname,
-          //       this.form.value.gender,
-          //       new Date(this.form.value.dateOfBirth),
-          //       this.form.value.opDescription,
-          //       new Date(this.form.value.opDate),
-          //       // uploadRes.imageUrl,
-          //       // uploadRes.imageUrl
-          //     );
-          //   })
-          // )
           .subscribe(() => {
             loadingEl.dismiss();
             this.form.reset();

@@ -14,7 +14,7 @@ interface PatientData {
   dateOfBirth: Date;
   opDescription: string;
   opDate: Date;
-  // imageUrlPatient: string;
+  imageUrlPatient: string;
   // imageUrlDiagram: string;
   userId: string;
 }
@@ -47,7 +47,7 @@ export class PatientService {
           new Date(PatientData.dateOfBirth),
           PatientData.opDescription,
           new Date(PatientData.opDate),
-          // PatientData.imageUrlPatient,
+          PatientData.imageUrlPatient,
           // PatientData.imageUrlDiagram,
           PatientData.userId,
         );
@@ -80,7 +80,7 @@ export class PatientService {
                 new Date(resData[key].dateOfBirth),
                 resData[key].opDescription,
                 new Date(resData[key].opDate),
-                // resData[key].imageUrlPatient,
+                resData[key].imageUrlPatient,
                 // resData[key].imageUrlDiagram,
                 resData[key].userId,
               )
@@ -118,7 +118,7 @@ export class PatientService {
     dateOfBirth: Date,
     opDescription: string,
     opDate: Date,
-    // imageUrlPatient: string,
+    imageUrlPatient: string,
     // imageUrlDiagram: string
   ) {
     let generatedId: string;
@@ -144,7 +144,7 @@ export class PatientService {
           dateOfBirth,
           opDescription,
           opDate,
-          // imageUrlPatient,
+          imageUrlPatient,
           // imageUrlDiagram,
           fetchedUserId,
         );
@@ -195,7 +195,7 @@ export class PatientService {
           dateOfBirth,
           opDescription,
           opDate,
-          // imageUrlPatient,
+          imageUrlPatient,
           // imageUrlDiagram,
           oldPatient.userId,
         );
@@ -206,6 +206,24 @@ export class PatientService {
       }),
       tap(() => {
         this._patients.next(updatedPatients);
+      })
+    );
+  }
+
+  deletePatient(patientId: string) {
+    return this.authService.token.pipe(
+      take(1),
+      switchMap((token) => {
+        return this.http.delete(
+          `https://hey-doc-368b1.firebaseio.com/patients/${patientId}.json?auth=${token}`
+        );
+      }),
+      switchMap(() => {
+        return this.patients;
+      }),
+      take(1),
+      tap((patients) => {
+        this._patients.next(patients.filter((b) => b.id !== patientId));
       })
     );
   }

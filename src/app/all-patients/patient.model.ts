@@ -8,7 +8,7 @@ export class Patient {
         public dateOfBirth: Date,
         public opDescription: string,
         public opDate: Date,
-        // public imageUrlPatient: string,
+        public imageUrlPatient: string,
         // public imageUrlDiagram: string,
         public userId: string
     ) {}
