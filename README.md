@@ -1,12 +1,8 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+Injection Expert is and application for doctors to menage their patient records and operation details. 
 
 # Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+1.	Run npm install command first then type "ionic serve" or "ng serve".
 
 # Build and Test
 TODO: Describe and show how to build your code and run the tests. 
