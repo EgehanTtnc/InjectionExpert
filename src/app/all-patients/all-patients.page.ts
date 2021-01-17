@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PatientService } from "./patient.service";
 import { Patient } from "./patient.model";
-import { IonItemSliding, LoadingController } from '@ionic/angular';
+import { IonItemSliding, IonRouterOutlet, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -18,6 +18,7 @@ export class AllPatientsPage implements OnInit {
   constructor(
     private patientService: PatientService,
     private router: Router,
+    private routerOutlet: IonRouterOutlet,
     private loadingCtrl: LoadingController,
   ) { }
 
@@ -28,6 +29,7 @@ export class AllPatientsPage implements OnInit {
   }
 
   ionViewWillEnter() {
+    this.routerOutlet.swipeGesture = false;
     this.loadingCtrl.create({message:"Patients Loading...", spinner: "lines", backdropDismiss: true}).then(loadingEl => {
       this.isLoading = true;
       loadingEl.present()

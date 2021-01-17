@@ -3,13 +3,12 @@
     <ion-img [src]="offer.imageUrl"></ion-img>
   </ion-thumbnail> -->
   <ion-label>
-    <h1>{{ allPatient.name }} {{allPatient.surname}} </h1>
+    <h1>{{ allPatient.name }} {{ allPatient.surname }}</h1>
     <div class="offer-details">
       <ion-icon name="calendar" color="primary"></ion-icon>
-      <ion-text color="tertiary" class="space-left">Operation Date: {{
-        allPatient.opDate | date
-      }}</ion-text>
-      
+      <ion-text color="tertiary" class="space-left"
+        >Operation Date: {{ allPatient.opDate | date }}</ion-text
+      >
     </div>
   </ion-label>
 </ion-item>

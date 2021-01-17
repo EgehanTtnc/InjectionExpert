@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package injection.expert;
 
 import android.os.Bundle;
 

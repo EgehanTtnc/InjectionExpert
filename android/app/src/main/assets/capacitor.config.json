@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "HeyDoc",
+  "appId": "injection.expert",
+  "appName": "Injection Expert",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
