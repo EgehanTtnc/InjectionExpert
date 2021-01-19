@@ -73,7 +73,7 @@ export class NewPatientPage implements OnInit {
         validators: [Validators.required],
       }),
       imageUrlPat: new FormControl(null),
-      // imageUrlDiagram: new FormControl(null),
+      imageUrlDiagram: new FormControl(null),
     });
   }
 
@@ -137,7 +137,7 @@ export class NewPatientPage implements OnInit {
       .then((loadingEl) => {
         loadingEl.present();
         this.patientService
-          .uploadImage(this.form.get('imageUrlPat').value)
+          .uploadImage(this.form.get('imageUrlPat').value, this.form.get('imageUrlDiagram').value)
           .pipe(
             switchMap(uploadRes => {
               return this.patientService.addPatient(
@@ -148,6 +148,7 @@ export class NewPatientPage implements OnInit {
                 new Date(this.form.value.dateOfBirth),
                 this.form.value.opDescription,
                 new Date(this.form.value.opDate),
+                uploadRes.imageUrl,
                 uploadRes.imageUrl
               )
             })

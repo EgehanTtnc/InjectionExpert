@@ -15,7 +15,7 @@ interface PatientData {
   opDescription: string;
   opDate: Date;
   imageUrlPatient: string;
-  // imageUrlDiagram: string;
+  imageUrlDiagram: string;
   userId: string;
 }
 
@@ -48,7 +48,7 @@ export class PatientService {
           PatientData.opDescription,
           new Date(PatientData.opDate),
           PatientData.imageUrlPatient,
-          // PatientData.imageUrlDiagram,
+          PatientData.imageUrlDiagram,
           PatientData.userId,
         );
       })
@@ -81,7 +81,7 @@ export class PatientService {
                 resData[key].opDescription,
                 new Date(resData[key].opDate),
                 resData[key].imageUrlPatient,
-                // resData[key].imageUrlDiagram,
+                resData[key].imageUrlDiagram,
                 resData[key].userId,
               )
             );
@@ -95,9 +95,10 @@ export class PatientService {
     );
   }
 
-  uploadImage(image: File) {
+  uploadImage(imagePat: File, imageDiag: File) {
     const uploadData = new FormData();
-    uploadData.append('image', image);
+    uploadData.append('imagePat', imagePat);
+    uploadData.append('imageDiag', imageDiag);
     return this.authService.token.pipe(
       take(1),
       switchMap((token) => {
@@ -119,7 +120,7 @@ export class PatientService {
     opDescription: string,
     opDate: Date,
     imageUrlPatient: string,
-    // imageUrlDiagram: string
+    imageUrlDiagram: string
   ) {
     let generatedId: string;
     let fetchedUserId: string;
@@ -145,7 +146,7 @@ export class PatientService {
           opDescription,
           opDate,
           imageUrlPatient,
-          // imageUrlDiagram,
+          imageUrlDiagram,
           fetchedUserId,
         );
         return this.http.post<{ name: string }>(
@@ -196,7 +197,7 @@ export class PatientService {
           opDescription,
           opDate,
           imageUrlPatient,
-          // imageUrlDiagram,
+          imageUrlDiagram,
           oldPatient.userId,
         );
         return this.http.put(

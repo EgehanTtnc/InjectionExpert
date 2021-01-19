@@ -2,15 +2,14 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Injection Expert</ion-list-header>
+        <ion-list  style="margin-top: 26px;" id="inbox-list">
+          <ion-list-header style="color: #3b3b3b;">Injection Expert</ion-list-header>
           <ion-note style="color: #00c3d1;">Patient Menagement App</ion-note>
 
           <ion-menu-toggle auto-hide="false">
             <ion-item
               routerDirection="root"
               [routerLink]="'/auth'"
-              lines="none"
               detail="false"
             >
               <ion-icon slot="start" name="log-out-outline"></ion-icon>
